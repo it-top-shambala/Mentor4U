@@ -1,9 +1,10 @@
 <Solution>
   <Folder Name="/git/">
-    <File Path=".gitattributes"/>
-    <File Path=".gitignore"/>
+    <File Path=".gitattributes" />
+    <File Path=".gitignore" />
   </Folder>
   <Folder Name="/others/">
-    <File Path=".editorconfig"/>
+    <File Path=".editorconfig" />
   </Folder>
+  <Project Path="Mentor4U/Mentor4U.csproj" Id="f0598579-6ec5-4bf8-bdcb-f8d99d0f4ac4" />
 </Solution>
