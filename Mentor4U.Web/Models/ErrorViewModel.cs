@@ -1,4 +1,4 @@
-namespace Mentor4U.Models;
+namespace Mentor4U.Web.Models;
 
 public class ErrorViewModel
 {
