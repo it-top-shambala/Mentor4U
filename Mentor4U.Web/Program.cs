@@ -1,7 +1,10 @@
+using Microsoft.AspNetCore.Diagnostics.HealthChecks; 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHealthChecks(); // сервис хелфчека /health
 
 var app = builder.Build();
 
@@ -25,5 +28,24 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    ResponseWriter = async (context, report) =>
+    {
+        context.Response.ContentType = "application/json";
+        await context.Response.WriteAsJsonAsync(new
+        {
+            status = report.Status.ToString(),
+            checks = report.Entries.Select(entry => new
+            {
+                name = entry.Key,
+                status = entry.Value.Status.ToString(),
+                description = entry.Value.Description,
+                error = entry.Value.Exception?.Message
+            }),
+            totalDuration = report.TotalDuration
+        });
+    }
+});
 
 app.Run();
