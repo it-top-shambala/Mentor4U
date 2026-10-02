@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-using Mentor4U.Models;
+using Mentor4U.Web.Models;
 
 using Microsoft.AspNetCore.Mvc;
 
