@@ -1,0 +1,6 @@
+
+
+### HEALTH
+GET http://localhost:5080/health
+
+###

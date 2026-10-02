@@ -1,10 +1,21 @@
-using Microsoft.AspNetCore.Diagnostics.HealthChecks; 
+using System.Linq;
+using Mentor4U.Lib;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<DataBaseContext>(options => options.UseNpgsql(connection));
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddHealthChecks(); // сервис хелфчека /health
+builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 

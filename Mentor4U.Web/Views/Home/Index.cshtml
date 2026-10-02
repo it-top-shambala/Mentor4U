@@ -1,8 +1,32 @@
-﻿@{
+﻿@using Mentor4U.Lib
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form method="post">
+        <div>
+            <input type="text" name="name" id="name" placeholder="Name" />
+            <input type="email" name="email" id="emil" placeholder="Email" />
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+<div class="text-center">
+    @{
+        if (ViewBag.Mentors is List<Mentor> mentors)
+        {
+            <ul>
+                @{
+                    foreach (var mentor in mentors)
+                    {
+                        <li>@mentor.Id</li>
+                        <li>@mentor.Name</li>
+                        <li>@mentor.Email</li>
+                    }
+                }
+            </ul>
+        }
+    }
 </div>
